@@ -30,4 +30,11 @@ class UserProfileController extends Controller
 
     }
 
+    public function update(Request $request, UserProfile $usr)
+    {
+        $q = $usr->find('user_id', $request->input('user_id'));
+        $q->name = $request->input('name');
+        $q->save();
+    }
+
 }
