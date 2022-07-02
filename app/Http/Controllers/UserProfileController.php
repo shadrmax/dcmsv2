@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 class UserProfileController extends Controller
 {
 
-    public function index(Request $request)
+    public function index(Request $request, UserProfile $usr)
     {
 
-        $user = UserProfile::where('user_id', $request->id)->get();
+        $user = $usr->where('user_id', $request->id)->get();
         foreach ($user as $value)
         {
             return view('user.index', compact('value'));
@@ -19,10 +19,14 @@ class UserProfileController extends Controller
 
     }
 
-    public function editProfile(Request $request, UserProfile $profile)
+    public function edit(Request $request, UserProfile $usr)
     {
 
-
+        $user = $usr->where('user_id', $request->id)->get();
+        foreach ($user as $value)
+        {
+            return view('user.edit', compact('value'));
+        }
 
     }
 
